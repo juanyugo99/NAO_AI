@@ -17,3 +17,5 @@ Robot mirroing with NAO robot and human post estimation, Bachelor's thesis proje
         * Instalation tutorial for ubuntu 16.04: https://www.youtube.com/watch?v=DnIs4DRjNL4
         * othe users guides: https://github.com/BVLC/caffe/wiki/Ubuntu-16.04-or-15.10-Installation-Guide and https://gist.github.com/titipata/f0ef48ad2f0ebc07bcb9 
         * issue page: https://github.com/BVLC/caffe/issues you'll get used to visit this site. ): 
+        * Instalation tutorial for Windows: https://github.com/BVLC/caffe/tree/windows
+        * Some posibles issues: https://github.com/BVLC/caffe/issues/6215 - https://github.com/BVLC/caffe/issues/4907
