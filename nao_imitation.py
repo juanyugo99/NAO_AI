@@ -10,37 +10,8 @@ from std_msgs.msg import Float32MultiArray
 from naoqi import ALProxy
 import json
 
-def traduction(data): 
-	trad_data = [
-	round(data[1],1),
-	round(data[0],1),
-	round(data[9],1),
-	round(data[8],1),
-	round(data[7],1),
-	round(data[10],1),
-	round(data[2],1),
-	round(data[3],1),
-	round(data[21],1),
-	round(data[20],1),
-	round(data[19],1),
-	round(data[22],1),
-	round(data[14],1),
-	round(data[15],1),
-	round(data[11],1),
-	round(data[12],1),
-	round(data[5],1),
-	round(data[4],1),
-	round(data[13],1),
-	round(data[6],1),
-	round(data[23],1),
-	round(data[24],1),
-	round(data[17],1),
-	round(data[16],1),
-	round(data[25],1),
-	round(data[18],1),
-	0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]	
-
-	return trad_data
+# angles = []
+old_angles = []
 
 def callback(data):
 	global datos
@@ -53,8 +24,90 @@ def update_keypoints():
 		with open('/home/naoai/Documents/MediaPose/nao_angles.json') as f:
 			angles = json.load(f)
 			angles = angles["angles"][0]
+		# print(angles)
 	except Exception, e:
 		print(e)
+
+def comp_angles(angles, old_angles):
+	grad = 0.034
+	if ((old_angles[0] + grad >= angles[0]) and (old_angles[0] - grad <= angles[0])):	
+		angles = old_angles
+
+	if (old_angles[1] + grad >= angles[1] and old_angles[1] - grad <= angles[1]):	
+		angles = old_angles
+
+	if (old_angles[2] + grad >= angles[2] and old_angles[2] - grad <= angles[2]):	
+		angles = old_angles
+
+	if (old_angles[3] + grad >= angles[3] and old_angles[3] - grad <= angles[3]):	
+		angles = old_angles
+
+	if (old_angles[4] + grad >= angles[4] and old_angles[4] - grad <= angles[4]):	
+		angles = old_angles
+
+	if (old_angles[5] + grad >= angles[5] and old_angles[5] - grad <= angles[5]):	
+		angles = old_angles
+
+	if (old_angles[6] + grad >= angles[6] and old_angles[6] - grad <= angles[6]):	
+		angles = old_angles
+
+	if (old_angles[7] + grad >= angles[7] and old_angles[7] - grad <= angles[7]):	
+		angles = old_angles
+
+	if (old_angles[8] + grad >= angles[8] and old_angles[8] - grad <= angles[8]):	
+		angles = old_angles
+
+	if (old_angles[9] + grad >= angles[9] and old_angles[9] - grad <= angles[9]):	
+		angles = old_angles
+
+	if (old_angles[10] + grad >= angles[10] and old_angles[10] - grad <= angles[10]):	
+		angles = old_angles
+
+	if (old_angles[11] + grad >= angles[11] and old_angles[11] - grad <= angles[11]):	
+		angles = old_angles
+
+	if (old_angles[12] + grad >= angles[12] and old_angles[12] - grad <= angles[12]):	
+		angles = old_angles
+
+	if (old_angles[13] + grad >= angles[13] and old_angles[13] - grad <= angles[13]):	
+		angles = old_angles
+
+	if (old_angles[14] + grad >= angles[14] and old_angles[14] - grad <= angles[14]):	
+		angles = old_angles
+
+	if (old_angles[15] + grad >= angles[15] and old_angles[15] - grad <= angles[15]):	
+		angles = old_angles
+
+	if (old_angles[16] + grad >= angles[16] and old_angles[16] - grad <= angles[16]):	
+		angles = old_angles
+
+	if (old_angles[17] + grad >= angles[17] and old_angles[17] - grad <= angles[17]):	
+		angles = old_angles
+
+	if (old_angles[18] + grad >= angles[18] and old_angles[18] - grad <= angles[18]):	
+		angles = old_angles
+
+	if (old_angles[19] + grad >= angles[19] and old_angles[19] - grad <= angles[19]):	
+		angles = old_angles
+
+	if (old_angles[20] + grad >= angles[20] and old_angles[20] - grad <= angles[20]):	
+		angles = old_angles
+
+	if (old_angles[21] + grad >= angles[21] and old_angles[21] - grad <= angles[21]):	
+		angles = old_angles
+
+	if (old_angles[22] + grad >= angles[22] and old_angles[22] - grad <= angles[22]):	
+		angles = old_angles
+
+	if (old_angles[23] + grad >= angles[23] and old_angles[23] - grad <= angles[23]):	
+		angles = old_angles
+
+	if (old_angles[24] + grad >= angles[24] and old_angles[24] - grad <= angles[24]):	
+		angles = old_angles
+
+	if (old_angles[25] + grad >= angles[25] and old_angles[25] - grad <= angles[25]):	
+		angles = old_angles
+
 
 def update_init_position(new_value):
 	return  new_value
@@ -110,17 +163,57 @@ def main(nao_ip):
 
 	posture.goToPosture("Stand", 1.0)
 
+	entro = 1
 	while(True):
-		current_posture = posture.getPostureFamily()
 
+		current_posture = posture.getPostureFamily()
+		update_keypoints()
 		if current_posture == "Standing":
-			update_keypoints()
-			#tts.say("Hi Jei, I'm going to move")
-			motor_speed = 0.3
-			motion.angleInterpolationWithSpeed(names, angles, motor_speed)
+			if entro == 1: 
+				entro = 0
+				print ("entro aki gg")
+				old_angles = [-0.151908,
+					  0.0137641,
+					  0.095066,
+					  -0.128814,
+					  -0.391128,
+					  -1.17662,
+					  0.2896,
+					  0.135034,
+					  0.0966839,
+					  -0.164096,
+					  -0.0859461,
+					  1.50635,
+					  -0.01845,
+					  0.033706,
+					  0.0874801,
+					  0.130432,
+					  0.398881,
+					  1.19955,
+					  0.2944,
+					  0.133416,
+					  -0.0966001,
+					  -0.164096,
+					  -0.0843279,
+					  1.50643,
+					  0.0643861,
+					  0.0720561]
+
+				# print(angles)
+				# print(old_angles)
+
+
+			comp_angles(angles, old_angles)
+			#tts.say("Hi, I'm going to move")
+			try:
+				motor_speed = 0.3
+				motion.angleInterpolationWithSpeed(names, angles, motor_speed)
 				#motion.angleInterpolationWithSpeed(JointNames, Pose0, pFractionMaxSpeed)
 				#time.sleep(0.5)"""
-			
+				old_angles = angles 
+			except Exception, e: 
+				print(e)
+
 		if current_posture != "Standing" :
 			StiffnessOn(motion)
 			tts.say("Give me one moment please")
@@ -143,7 +236,7 @@ def main(nao_ip):
 
 if __name__ == '__main__':
 	
-	nao_ip = "192.168.1.101"
+	nao_ip = "192.168.1.102"
 
 	if len(sys.argv) <= 1:
 		print "Usage python motion_walk.py robotIP (optional default: 127.0.0.1)"
