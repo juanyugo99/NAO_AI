@@ -12,10 +12,10 @@ Se recomienda correr los codigos necesarios en un sistema operativo Linux, Ubunt
     
     * Para el robot físico: 
       * Naoqi para Nao (Versión actualizada) : 
-      * Naoqi para el PC : 
-                          antiguo sdk: https://www.softbankrobotics.com/emea/en/support/nao-6/downloads-softwares/former-versions?os=49&category=76
-                          Tutorial : http://wiki.ros.org/nao/Tutorials/Installation
-                          Probar la conexión con el robot: http://wiki.ros.org/nao_bringup
+      Naoqi para el PC : 
+                          * antiguo sdk: https://www.softbankrobotics.com/emea/en/support/nao-6/downloads-softwares/former-versions?os=49&category=76
+                          * Tutorial : http://wiki.ros.org/nao/Tutorials/Installation
+                          * Probar la conexión con el robot: http://wiki.ros.org/nao_bringup
                           
 2. Predicción de los ángulos 
     * Se debe crear un conda environment y una vez creado, se debe correr el siguiente comandos desde la terminal: 
