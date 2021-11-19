@@ -11,8 +11,8 @@ Se recomienda correr los codigos necesarios en un sistema operativo Linux, Ubunt
       * NAO_DESCRIPTION :  
     
     * Para el robot físico: 
-      * Naoqi para Nao (Versión actualizada) : 
-      Naoqi para el PC : 
+      * Naoqi para Nao (Versión actualizada) : Este corresponde al archivo llamado "opennao-atom-system-image-2.1.4.13_2015-08-27"
+      * Naoqi para el PC : 
                           * antiguo sdk: https://www.softbankrobotics.com/emea/en/support/nao-6/downloads-softwares/former-versions?os=49&category=76
                           * Tutorial : http://wiki.ros.org/nao/Tutorials/Installation
                           * Probar la conexión con el robot: http://wiki.ros.org/nao_bringup
