@@ -18,10 +18,10 @@ Se recomienda correr los codigos necesarios en un sistema operativo Linux, Ubunt
     
     
 2. Predicción de los ángulos 
-    * Se debe crear un conda environment y una vez creado, se debe correr el siguiente comandos desde la terminal: 
+    * Se debe crear un conda environment, una vez creado se debe correr el siguiente comando desde la terminal: 
         * pip install -r requirtments.txt 
     
-    * Archivos para la red de predicción de angulos (deben de estar en la misma carpeta donde se encuentra el archivo .py
+    * Archivos para la red de predicción de angulos, deben de estar en la misma carpeta donde se encuentra el archivo .py
         * checkpoint.pth
         * x_scaler.pkl
    
@@ -34,4 +34,6 @@ Se recomienda correr los codigos necesarios en un sistema operativo Linux, Ubunt
         *  python mediapipe_keypoints.py -save_json save_json : si se desea guardar el json que contiene los angulos predichos por el algoritmo
   
 3. Control de NAO 
-     * Para controlar a nao se debe correr el codigo nao_imitation.py, es necesario que tanto el computador, como el robot estén conectados a la misma red wifi, adicionalmente, se debe revisar la dirección IP del robot NAO y verificar que sea la misma dirección que se encuentra en el código. 
+     * Para controlar a Nao se debe correr el codigo nao_imitation.py, es necesario que tanto el computador, como el robot estén conectados a la misma red wifi. Se debe revisar la dirección IP del robot NAO y verificar que sea la misma dirección que se encuentra en el código. 
+ 
+
