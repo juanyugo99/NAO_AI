@@ -5,17 +5,18 @@ Imitación del movimiento humano en robot humanoide NAO mediante inteligencia ar
 ------------------------------
  
 Se recomienda correr los codigos necesarios en un sistema operativo Linux, Ubuntu 14.04
-1. Instalación de paquetes necesarios para controlar a NAO
-   * En  simulación :
-      * ROS Indigo: http://wiki.ros.org/indigo/Installation/Ubuntu
-      * NAO_DESCRIPTION :  
-    
-    * Naoqi para Nao (Versión actualizada) : Se encuentra en https://drive.google.com/drive/folders/1Z8o0tsE_2d0TbEYgxMoSdvvrxMmHCwuD "opennao-atom-system-image-2.1.4.13_2015-08-27"
+
+1. Instalación de softwares y paquetes necesarios para controlar a NAO
+    * ROS Indigo: http://wiki.ros.org/indigo/Installation/Ubuntu  
+    * Configuración del entorno para ROS :  http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
+    * Paquetes para NAO en ROS : sudo apt-get install ros-indigo-nao-robot
     * Naoqi para el PC : 
        * antiguo sdk: https://www.softbankrobotics.com/emea/en/support/nao-6/downloads-softwares/former-versions?os=49&category=76
        * Tutorial : http://wiki.ros.org/nao/Tutorials/Installation
        * Probar la conexión con el robot: http://wiki.ros.org/nao_bringup
-                          
+    * Naoqi para robot Nao (En caso de que el SO del robot deba ser actualizado) : Se encuentra en https://drive.google.com/drive/folders/1Z8o0tsE_2d0TbEYgxMoSdvvrxMmHCwuD (opennao-atom-system-image-2.1.4.13_2015-08-27)
+    
+    
 2. Predicción de los ángulos 
     * Se debe crear un conda environment y una vez creado, se debe correr el siguiente comandos desde la terminal: 
         * pip install -r requirtments.txt 
