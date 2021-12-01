@@ -30,6 +30,7 @@ Se recomienda correr los codigos necesarios en un sistema operativo Linux, Ubunt
         conda create -n naoai python=3.6 -y
         conda activate naoai
         git clone https://github.com/juanyugo99/NAO_AI.git
+        cd NAO_AI
         pip install -r requirtments.txt 
         ```
    
