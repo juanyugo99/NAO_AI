@@ -23,6 +23,7 @@ parser.add_argument("-out_dir", "--output_direction", dest = "out_dir", default 
 parser.add_argument("-sk", "--skip",                  dest = "skipped_frames", default = 10 , help= "frames to skip on video detection")
 parser.add_argument("-save_img", "--save_images",     dest = "save_images", default = False , help= "save images")
 parser.add_argument("-save_json", "--save_json",      dest = "save_json", default = False , help= "save json")
+parser.add_argument("-vel", "--velocity",             dest = "velocity", default = 0.5, help="velocity of reproduction: adjuts the time between frames")
 
 args = parser.parse_args()
 
@@ -52,13 +53,14 @@ skipped_frames =  int(args.skipped_frames)
 save_img =        args.save_images
 save_json =       args.save_json
 out_dir =         str(args.out_dir)
+vel_rep =         args.velocity
 
 # Network and Scaler Loading 
 
-naonet = import_net("checkpoint_old.pth", features=99, outputs=26) # netwok
+naonet = import_net("checkpoint.pth", features=99, outputs=26) # netwok
 naonet.eval()
 x_scaler = load(open('x_scaler.pkl', 'rb'))
-
+print (naonet)
 
 if __name__ == '__main__':
 
@@ -130,12 +132,20 @@ if __name__ == '__main__':
       if save_json and keypoints_dict:
         with open(out_dir+'json_results.json', 'w') as f:
             json.dump(keypoints_dict, f)
+      
+      to_json = {
+              "angles": nao_out}
+      
+      with open('nao_angles.json', 'w') as json_file:
+            json.dump(to_json, json_file)
+      
+      time.sleep(vel_rep)
 
 
   # -------------------------------------------------------- VIDEO DETECTION -------------------------------------------------------- #
 
 
-  if detection_mode == ("video" or "camera"):
+  if detection_mode == "video" or "camera":
 
     cap = cv2.VideoCapture(video_in)
 
@@ -145,6 +155,7 @@ if __name__ == '__main__':
 
     with mp_pose.Pose( 
       min_detection_confidence=0.5, 
+      # model_complexity = 0,
       min_tracking_confidence=0.5) as pose:
 
       frame_num = 0
@@ -189,7 +200,6 @@ if __name__ == '__main__':
           # Flip the image horizontally for a selfie-view display.
 
           cv2.imshow('MediaPipe Pose', cv2.flip(image, 1))
-          cv2.waitkey(1)
           
           if cv2.waitKey(5) & 0xFF == 27:
             if save_json and keypoints_dict:
@@ -246,3 +256,25 @@ if __name__ == '__main__':
 
           if save_img:
             cv2.imwrite(out_dir + "image_{}.png".format(frame_num), cv2.flip(image, 1))
+  
+  if detection_mode == "rep":
+
+    motion_input = str(args.in_dir)
+
+    with open(motion_input) as f:
+
+      motion_json = json.load(f)
+    
+    for frame in motion_json:
+      
+      nao_out = frame["prediction"]
+
+      to_json = {
+        "angles": nao_out}
+      
+      print(to_json)
+      
+      with open('nao_angles.json', 'w') as json_file:
+            json.dump(to_json, json_file)
+      
+      time.sleep(vel_rep)

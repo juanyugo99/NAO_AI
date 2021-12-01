@@ -21,7 +21,7 @@ def update_keypoints():
 	global angles
 	try: 	
 		print ('reading poses')
-		with open('/home/naoai/Documents/MediaPose/nao_angles.json') as f:
+		with open('nao_angles.json') as f:
 			angles = json.load(f)
 			angles = angles["angles"][0]
 		# print(angles)
@@ -29,7 +29,7 @@ def update_keypoints():
 		print(e)
 
 def comp_angles(angles, old_angles):
-	grad = 0.034
+	grad = 0.069
 	if ((old_angles[0] + grad >= angles[0]) and (old_angles[0] - grad <= angles[0])):	
 		angles = old_angles
 
@@ -206,7 +206,7 @@ def main(nao_ip):
 			comp_angles(angles, old_angles)
 			#tts.say("Hi, I'm going to move")
 			try:
-				motor_speed = 0.3
+				motor_speed = 0.2
 				motion.angleInterpolationWithSpeed(names, angles, motor_speed)
 				#motion.angleInterpolationWithSpeed(JointNames, Pose0, pFractionMaxSpeed)
 				#time.sleep(0.5)"""
@@ -236,7 +236,7 @@ def main(nao_ip):
 
 if __name__ == '__main__':
 	
-	nao_ip = "192.168.1.102"
+	nao_ip = "192.168.1.101"
 
 	if len(sys.argv) <= 1:
 		print "Usage python motion_walk.py robotIP (optional default: 127.0.0.1)"
